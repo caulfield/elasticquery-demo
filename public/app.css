@@ -5,3 +5,28 @@
 .btn:focus, .btn:hover {
   background-color: #004d40;
 }
+
+a.modal-trigger {
+  color: #004d40;
+}
+
+.collapsible-body {
+  padding: 0 1rem;
+}
+
+.form {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+dt {
+  font-weight: bold;
+}
+
+.humans-list {
+  margin-top: 0.5rem;
+}
+
+.ribbon img {
+  z-index: 1000;
+}

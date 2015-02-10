@@ -1,27 +1,81 @@
 .row
-  .col.s3
-    .row
-      form action="#" method="get"
+  .col.l3.s12.m12
+    .row.form.z-depth-1
+      form action="/" method="get"
         .input-field
-          input#name type="text" name="name"
+          == input_for :name
           label for="name" Name
+        label Country
+        - value = @params[:country] || ""
+        == select_for :country, {Russia: "Russia", USA: "USA", Belarus: "Belarus", Worldwide: ""}, value: value
+        p
+          == checkbox_for :not_president, !!@params[:not_president]
+          label for="not_president" Not president
+        p.range-field
+          label for="min_stature" Min stature
+          input name="min_stature" type='range' min='150' max='220' value=params[:min_stature]
         button.right.btn.waves-effect.waves-light type="submit" name="action"
           | submit
           i.right.mdi-content-send
-  .col.s6
-    #es-humans
-  .col.s3
-    #es-query
+  .col.l5.s12.m6
+    - if @humans.empty?
+      div.humans-list
+        h3 specify filters to find somebody
+    div.humans-list.z-depth-1
+      - @humans.each do |human|
+        div
+          .collapsible-header= human['name']
 
-script#es-query type="text/x-handlebars-template"
-  p
-    | query: {{query}}
+  .col.l4.s12.m6
+    ul.collapsible data-collapsible="expandable"
+      li
+        .collapsible-header
+          | Current index
+          i.mdi-action-settings
+          a.right.waves-effect.modal-trigger href="#current-index-modal"
+            i.mdi-navigation-arrow-forward
+        .collapsible-body
+          pre
+            code.json== current_index
+      li
+        .collapsible-header
+          | Ruby code
+          i.mdi-content-sort
+          a.right.waves-effect.modal-trigger href="#ruby-code-modal"
+            i.mdi-navigation-arrow-forward
+        .collapsible-body
+          pre
+            code.ruby== query_snippet
+      li.generated-query
+        .collapsible-header
+          | Generated query
+          i.mdi-action-search
+          a.right.waves-effect.modal-trigger href="#current-query-modal"
+            i.mdi-navigation-arrow-forward
+        .collapsible-body
+          pre
+            code.json== current_query
 
-script#es-humans type="text/x-handlebars-template"
-  ul.collection
-    |
-      {{#each humans}}
-        <li class="collection-item">
-          {{name}}
-        </li>
-      {{/each}}
+#ruby-code-modal.modal.modal-fixed-footer
+  .modal-content
+    h4 Your query object
+    pre
+      code.ruby== query_snippet
+  .modal-footer
+    a.right.waves-effect.waves-red.btn-flat.modal-action.modal-close href="#" Close
+
+#current-query-modal.modal.modal-fixed-footer
+  .modal-content
+    h4 Elasticquery generated query
+    pre
+      code.json== current_query
+  .modal-footer
+    a.right.waves-effect.waves-red.btn-flat.modal-action.modal-close href="#" Close
+
+#current-index-modal.modal.modal-fixed-footer
+  .modal-content
+    h4 Elasticsearch settings
+    pre
+      code.json== current_index
+  .modal-footer
+    a.right.waves-effect.waves-red.btn-flat.modal-action.modal-close href="#" Close

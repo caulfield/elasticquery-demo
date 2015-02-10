@@ -13,7 +13,11 @@ HumanRepository = Elasticsearch::Persistence::Repository.new do
 
   settings do
     mapping do
-      indexes :name, analyzer: 'snowball'
+      indexes :first_name, analyzer: 'snowball'
+      indexes :last_name, analyzer: 'snowball'
+      indexes :country, index: "not_analyzed"
+      indexes :kind, index: "not_analyzed"
+      indexes :stature, type: :integer
     end
   end
 end
