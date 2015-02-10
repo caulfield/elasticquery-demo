@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"
+    link type="text/css" rel="stylesheet" href="app.css"  media="screen,projection"
+    title elasticquery-demo
+  body
+    .navbar-fixed
+      nav
+        .nav-wrapper
+          .container
+            a.brand-logo href="/" Elastiquery demo
+            ul#nav-mobile.right.side-nav
+              li
+                a href="#" Github
+            a.button-collapse href="#" data-activates="nav-mobile"
+              i.mdi-navigation-menu
+
+    .container
+      == yield
+    script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"
+    script type="text/javascript" src="materialize/js/materialize.min.js"
+    script type="text/javascript" src="handlebars-v3.0.0.js"
+    script type="text/javascript" src="app.js"

@@ -1,0 +1,7 @@
+.btn, nav {
+  background-color: #004d40;
+}
+
+.btn:focus, .btn:hover {
+  background-color: #004d40;
+}

@@ -1,0 +1,27 @@
+.row
+  .col.s3
+    .row
+      form action="#" method="get"
+        .input-field
+          input#name type="text" name="name"
+          label for="name" Name
+        button.right.btn.waves-effect.waves-light type="submit" name="action"
+          | submit
+          i.right.mdi-content-send
+  .col.s6
+    #es-humans
+  .col.s3
+    #es-query
+
+script#es-query type="text/x-handlebars-template"
+  p
+    | query: {{query}}
+
+script#es-humans type="text/x-handlebars-template"
+  ul.collection
+    |
+      {{#each humans}}
+        <li class="collection-item">
+          {{name}}
+        </li>
+      {{/each}}
