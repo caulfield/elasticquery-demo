@@ -1,12 +1,14 @@
+require 'dotenv'
+Dotenv.load
 require './core/human_repository'
 
 task :seed do
   people = [
-    Human.new(first_name: "Vladimir", last_name: "Putin", country: "Russia", kind: 'president', stature: 168 ),
-    Human.new(first_name: "Barack", last_name: "Obama", country: "USA", kind: 'president', stature: 185 ),
-    Human.new(first_name: "George", last_name: "Bush", country: "USA", kind: 'president', stature: 178),
-    Human.new(first_name: "Sergey", last_name: "Kuchmistov", country: "Belarus", kind: 'developer', stature: 185),
-    Human.new(first_name: "Mike", last_name: "Morris", country: "USA", kind: 'regular', stature: 202)
+    Human.new(name: "Mark", gender: "male", age: 20),
+    Human.new(name: "Mary", gender: "female", age: 25),
+    Human.new(name: "Max", gender: "male", age: 30),
+    Human.new(name: "George", gender: "male", age: 50),
+    Human.new(name: "Helen", gender: "female")
   ]
 
   people.each do |human|

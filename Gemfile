@@ -9,7 +9,8 @@ gem 'thin'
 gem 'oj'
 gem 'activesupport'
 gem 'sinatra-tag-helpers', :require => 'sinatra/tag-helpers'
+gem 'dotenv'
 
-gem 'elasticquery', github: "caulfield/elasticquery"
+gem 'elasticquery', '= 0.1.2'
 gem 'elasticsearch-ruby'
 gem 'elasticsearch-persistence'

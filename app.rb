@@ -1,3 +1,6 @@
+require 'dotenv'
+Dotenv.load
+
 require 'sinatra/base'
 require "sinatra/json"
 require 'slim'
@@ -16,10 +19,9 @@ class App < Sinatra::Base
       snippet = <<-eos
 class HumanQuery < Elasticquery::Base
   filtered do |params|
-    search params[:name], fields: %w(first_name last_name), operator: "or" if params[:name].present?
-    term country: params[:country] if params[:country].present?
-    term.not kind: "president" if !!params[:not_president]
-    range :stature, gte: params[:min_stature].to_i
+    search params[:name], fields: %w(name), operator: "or"
+    term genre: params[:genre]
+    range :age, gte: params[:age].to_i
   end
 end
       eos
